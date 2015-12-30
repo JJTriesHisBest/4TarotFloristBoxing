@@ -1,24 +1,22 @@
 #include <lib/card.h>
 
 
-Card::Card(Suit aSuit, Effect& aEffect)
-  : iSuit(aSuit)
-  , iEffect(aEffect)
+Card::Card(Suit aSuit)
+	: iSuit(aSuit)
 {
-
 }
 
-Card::~Card()
+void Card::AddEffect(IEffect* aEffect)
 {
-
+	iEffects.emplace_back(aEffect);
 }
 
-Suit Card::Suit()
+Suit Card::GetSuit() const
 {
-  return iSuit;
+	return iSuit;
 }
 
-Effect& Card::Effect()
+vu<IEffect>& Card::Effects()
 {
-  return iEffect;
+	return iEffects;
 }

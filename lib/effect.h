@@ -1,21 +1,22 @@
-#include <string.h>
+#include <string>
 
+class Game;
 
 class IEffect
 {
 public:
-  ~IEffect {};
+  ~IEffect () {};
 public:
   virtual void Apply(Game& aGame) = 0;
 };
 
 
 class EffectTest
+	: public IEffect
 {
 public:
-  Effect(std::string aMessage);
-  ~Effect();
-public:
+  EffectTest(std::string aMessage);
+public: // IEffect
   void Apply(Game& aGame) override;
 private:
   std::string iMessage;

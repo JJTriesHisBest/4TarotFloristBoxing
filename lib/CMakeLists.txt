@@ -1,5 +1,6 @@
 include_directories ("${PROJECT_SOURCE_DIR}")
 add_library (libtfb
 	card.cpp
-	player.cpp
-	game.cpp)
+	effect.cpp
+	game.cpp
+	player.cpp)

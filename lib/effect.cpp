@@ -1,18 +1,12 @@
 #include <lib/effect.h>
-#include <string.h>
+#include <iostream>
 
 EffectTest::EffectTest(std::string aMessage)
   : iMessage(aMessage)
 {
-
 }
 
-EffectTest::~EffectTest()
+void EffectTest::Apply(Game& /*aGame*/)
 {
-
-}
-
-EffectTest::Apply(Game& /*aGame*/)
-{
-  cout << iMessage;
+  std::cout << iMessage;
 }
