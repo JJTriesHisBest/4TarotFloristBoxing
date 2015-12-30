@@ -19,5 +19,4 @@ public:
   void Apply(Game& aGame) override;
 private:
   std::string iMessage;
-
-}
+};
