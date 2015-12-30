@@ -13,12 +13,12 @@ Card::~Card()
 
 }
 
-Suit Card::Suit()
+Suit Card::GetSuit()
 {
   return iSuit;
 }
 
-Effect& Card::Effect()
+Effect& Card::GetEffect()
 {
   return iEffect;
 }
