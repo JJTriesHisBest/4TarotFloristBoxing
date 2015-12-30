@@ -1,7 +1,6 @@
 #pragma once
 
 #include <lib/card.h>
-class Card {};
 #include <lib/mission.h>
 #include <lib/vu.h>
 

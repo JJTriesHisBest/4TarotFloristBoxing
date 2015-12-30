@@ -24,7 +24,7 @@ private:
 
 EffectTest::EffectTest(std::string aMessage, bool& aVictory)
   : iMessage(aMessage)
-  , iVictory
+  , iVictory(aVictory)
 {
 
 }

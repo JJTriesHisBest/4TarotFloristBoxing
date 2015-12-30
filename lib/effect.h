@@ -1,10 +1,11 @@
-#include <string.h>
+#include <string>
 
+class Game;
 
 class IEffect
 {
 public:
-  ~IEffect {};
+  ~IEffect () {};
 public:
   virtual void Apply(Game& aGame) = 0;
 };

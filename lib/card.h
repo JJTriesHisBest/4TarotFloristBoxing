@@ -1,21 +1,24 @@
+#pragma once
+#include <lib/effect.h>
+#include <lib/vu.h>
 
 enum class Suit
 {
-  eDiamond,
-  eClub,
-  eHeart,
-  eSpade
+	eDiamond,
+	eClub,
+	eHeart,
+	eSpade
 };
 
 class Card
 {
 public:
-  Card(Suit aSuit, Effect& aEffect);
-  ~Card();
-public:
-  Suit Suit();
-  Effect& Effect();
+	Card(Suit aSuit);
+	void AddEffect(IEffect* aEffect);
+	Suit GetSuit() const;
+	vu<IEffect>& Effects();
 private:
-  Suit iSuit;
-  Effect& iEffect;
+	Suit iSuit;
+	vu<IEffect> iEffects;
 };
+
