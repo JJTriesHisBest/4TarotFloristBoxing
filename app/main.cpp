@@ -1,12 +1,24 @@
 #include <lib/game.h>
+#include <lib/deck.h>
+#include <lib/renderer.h>
 
 int main()
 {
 	Game game;
+	game.AddPlayer(new Player("tim"));
+	game.AddPlayer(new Player("jj"));
 
-	auto player = new Player();
-	player->AddCard(new Card(Suit::eDiamond));
+	Deck deck;
+	EffectFactoryNull effectFactory;
 
-	game.AddPlayer(new Player());
+	for (auto& player : game.Players())
+	{
+		auto card = deck.CreateCard();
+		card->AddEffect(effectFactory.CreateEffect());
+		player->AddCard(card);
+	}
+
+	RendererConsole renderer;
+	renderer.Render(game);
 }
 
