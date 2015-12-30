@@ -1,11 +1,6 @@
 #include <lib/effect.h>
 #include <iostream>
 
-void EffectTest::Apply(Game& /*aGame*/)
-{
-  std::cout << iMessage;
-}
-
 EffectNull::EffectNull()
 	: iDescription("Does nothing.")
 {}
