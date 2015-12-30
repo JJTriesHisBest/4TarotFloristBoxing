@@ -54,8 +54,7 @@ int main()
 		// check missions
 		for (auto& mission : winningEntry.first.Missions())
 		{
-			//if (mission->Check(winningEntry.first, game))
-			if (mission->Check(game))
+			if (mission->Check(game, winningEntry.first))
 			{
 				cout << winningEntry.first.Name() << " won!" << endl;
 				playing = false;
@@ -68,4 +67,3 @@ int main()
 		}
 	}
 }
-
