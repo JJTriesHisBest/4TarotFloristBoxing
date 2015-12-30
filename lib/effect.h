@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-
+#include <lib/token.h>
 class Game;
 
 // IEffect
@@ -42,4 +42,31 @@ class EffectFactoryNull
 {
 public: // IEffectFactory
 	IEffect* CreateEffect() override;
+};
+
+
+class EffectReceive
+  : public IEffect
+{
+public:
+  EffectReceive(int aReceived, Token aColour);
+  ~EffectReceive();
+public:
+  const std::string& Description() const override;
+  void Apply(Game& aGame) override;
+private:
+  int iReceived;
+  std::string iDescription;
+};
+
+class EffectReceiveFactory
+  : public IEffectFactory
+{
+public:
+  EffectReceiveFactory(uint aPlayers); //EffectReceiveFactory needs to know the amount of players to appropriately generate receive amounts
+  ~EffectReceiveFactory();
+public: //IEffectFactory
+  IEffect* CreateEffect() override;
+private:
+  uint iMaxReceive;
 };
