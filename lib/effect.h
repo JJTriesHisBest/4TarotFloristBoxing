@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 
 class Game;
@@ -41,4 +43,3 @@ class EffectFactoryNull
 public: // IEffectFactory
 	IEffect* CreateEffect() override;
 };
-
