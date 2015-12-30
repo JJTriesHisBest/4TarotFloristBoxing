@@ -5,4 +5,5 @@ add_subdirectory (lib)
 include_directories ("${PROJECT_SOURCE_DIR}")
 add_executable(tfb app/main.cpp)
 target_link_libraries(tfb libtfb)
-
+add_executable(testtfb app/test.cpp)
+target_link_libraries(testtfb libtfb)
