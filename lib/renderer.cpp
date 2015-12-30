@@ -9,8 +9,10 @@ void RendererConsole::Render(Game& aGame)
 	for (auto& player : aGame.Players())
 	{
 		cout << "[" << player->Name() << "]" << endl;
+		int index = 1;
 		for (auto& card : player->Cards())
 		{
+			cout << index << ". ";
 			switch (card->GetSuit()) {
 			case Suit::eDiamond:
 				cout << "Diamond";
@@ -37,6 +39,7 @@ void RendererConsole::Render(Game& aGame)
 
 				cout << endl;
 			}
+			++index;
 		}
 	}
 }
