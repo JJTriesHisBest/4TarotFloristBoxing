@@ -10,7 +10,6 @@ Deck::Deck()
 
 Card* Deck::CreateCard()
 {
-		
 	return new Card(Suit::eDiamond);
 }
 

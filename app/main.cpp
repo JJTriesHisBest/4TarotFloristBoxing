@@ -1,7 +1,11 @@
+#include <lib/arbitrator.h>
 #include <lib/game.h>
 #include <lib/dealer.h>
 #include <lib/deck.h>
 #include <lib/renderer.h>
+#include <iostream>
+
+using namespace std;
 
 int main()
 {
@@ -16,7 +20,52 @@ int main()
 		dealer.Deal(*player, 4);
 	}
 
+	Arbitrator arbitrator;
 	RendererConsole renderer;
-	renderer.Render(game);
+
+	bool playing = true;
+
+	while (playing)
+	{
+		renderer.Render(game);
+
+		// get each players input
+		std::vector<RoundEntry> round;
+		for (auto& player : game.Players())
+		{
+			int n;
+			cout << player->Name() << ", please choose a card to play:";
+			cin >> n;
+			// extract card
+			auto card = player->Cards().extract(n-1);
+			round.emplace_back(*player.get(), std::move(card));
+		}
+
+		// arbitrate
+		auto& winningEntry = arbitrator.Arbitrate(round);
+
+		// run effects
+		for (auto& effect : winningEntry.second->Effects())
+		{
+			//effect->Apply(winningEntry.first, game);
+			effect->Apply(game);
+		}
+
+		// check missions
+		for (auto& mission : winningEntry.first.Missions())
+		{
+			//if (mission->Check(winningEntry.first, game))
+			if (mission->Check(game))
+			{
+				cout << winningEntry.first.Name() << " won!" << endl;
+				playing = false;
+			}
+		}
+
+		for (auto& player : game.Players())
+		{
+			dealer.Deal(*player, 1);
+		}
+	}
 }
 
