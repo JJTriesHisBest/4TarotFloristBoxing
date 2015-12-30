@@ -24,7 +24,7 @@ EffectReceive::EffectReceive(int aReceived, Token aColour)
   : iReceived(aReceived)
 {
   std::ostringstream buf;
-  buf << aReceived > 0 ? "Increase " : "Decrease ";
+  buf << (aReceived > 0 ? "Increase " : "Decrease ");
 
   switch(aColour){
     case Token::eRed:
