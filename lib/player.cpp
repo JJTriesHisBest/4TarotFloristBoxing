@@ -2,6 +2,7 @@
 
 Player::Player(std::string aName)
 	: iName(aName)
+	, iTokens(new RBGTokenCounter())
 {}
 
 const std::string& Player::Name() const
@@ -29,3 +30,7 @@ vu<IMission>& Player::Missions()
 	return iMissions;
 }
 
+ITokenCounter& Player::Tokens()
+{
+	return *iTokens;
+}

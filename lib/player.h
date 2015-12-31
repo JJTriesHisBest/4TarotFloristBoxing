@@ -3,8 +3,9 @@
 #include <lib/card.h>
 #include <lib/mission.h>
 #include <lib/vu.h>
+#include <lib/token.h>
 #include <string>
-
+#include <memory>
 
 class Player
 {
@@ -15,10 +16,10 @@ public:
 	void AddMission(IMission* aMission);
 	vu<Card>& Cards();
 	vu<IMission>& Missions();
+	ITokenCounter& Tokens();
 private:
 	std::string iName;
 	vu<Card> iCards;
 	vu<IMission> iMissions;
+	std::unique_ptr<ITokenCounter> iTokens;
 };
-
-
