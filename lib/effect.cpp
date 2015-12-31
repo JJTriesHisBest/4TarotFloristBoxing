@@ -1,4 +1,5 @@
 #include <lib/effect.h>
+#include <lib/player.h>
 #include <iostream>
 #include <sstream>
 #include <random>

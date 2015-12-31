@@ -12,11 +12,11 @@ RBGTokenCounter::~RBGTokenCounter()
 
 }
 
-const uint RBGTokenCounter::GetToken(Token aColour) const
+unsigned int RBGTokenCounter::GetToken(Token aColour) const
 {
-  return iTokens[aColour];
+  return iTokens.at(aColour);
 }
-void RBGTokenCounter::SetToken(Token aColour, uint aCount) const
+void RBGTokenCounter::SetToken(Token aColour, unsigned int aCount)
 {
   iTokens[aColour] = aCount;
 }

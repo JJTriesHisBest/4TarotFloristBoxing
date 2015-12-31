@@ -7,4 +7,5 @@ add_library (libtfb
 	effect.cpp
 	game.cpp
 	player.cpp
-	renderer.cpp)
+	renderer.cpp
+	token.cpp)

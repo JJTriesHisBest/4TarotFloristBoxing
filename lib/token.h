@@ -14,8 +14,8 @@ class ITokenCounter
 public:
   virtual ~ITokenCounter() {}
 public:
-  virtual const uint GetToken(Token aColour) const = 0;
-  virtual void SetToken(Token aColour, uint aCount) const = 0;
+  virtual unsigned int GetToken(Token aColour) const = 0;
+  virtual void SetToken(Token aColour, unsigned int aCount) = 0;
 
 };
 
@@ -25,8 +25,8 @@ public:
   RBGTokenCounter();
   ~RBGTokenCounter();
 public: //ITokenCounter
-  const uint GetToken(Token aColour) const override;
-  void SetToken(Token aColour, uint aCount) const override;
+  unsigned int GetToken(Token aColour) const override;
+  void SetToken(Token aColour, unsigned int aCount) override;
 private:
-  std::map<Token, uint> iTokens;
+  std::map<Token, unsigned int> iTokens;
 };

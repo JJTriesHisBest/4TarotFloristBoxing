@@ -2,9 +2,10 @@
 
 #include <string>
 #include <lib/token.h>
-#include <lib/player.h>
+
 
 class Game;
+class Player;
 
 // IEffect
 

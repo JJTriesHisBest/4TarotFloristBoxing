@@ -56,7 +56,7 @@ int main()
 			// run effects
 			for (auto& effect : effects)
 			{
-				effect->Apply(game);
+				effect->Apply(game, player);
 			}
 
 			// check missions
