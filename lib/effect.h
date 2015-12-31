@@ -1,8 +1,9 @@
 #pragma once
-#include <string>
 
 #include <string>
 #include <lib/token.h>
+#include <lib/player.h>
+
 class Game;
 
 // IEffect
@@ -11,7 +12,7 @@ class IEffect
 {
 public:
 	virtual const std::string& Description() const = 0;
-	virtual void Apply(Game& aGame) = 0;
+	virtual void Apply(Game& aGame, Player& aCurrentPlayer) = 0;
   	~IEffect () {};
 };
 
@@ -33,7 +34,7 @@ public:
 	EffectNull();
 public:
 	const std::string& Description() const override;
-	void Apply(Game& aGame) override;
+	void Apply(Game& aGame, Player& aCurrentPlayer) override;
 private:
 	std::string iDescription;
 };
@@ -54,10 +55,11 @@ public:
   ~EffectReceive();
 public:
   const std::string& Description() const override;
-  void Apply(Game& aGame) override;
+  void Apply(Game& aGame, Player& aCurrentPlayer) override;
 private:
   int iReceived;
   std::string iDescription;
+	Token iToken;
 };
 
 class EffectReceiveFactory

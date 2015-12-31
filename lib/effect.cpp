@@ -11,7 +11,7 @@ const std::string& EffectNull::Description() const
 	return iDescription;
 }
 
-void EffectNull::Apply(Game&)
+void EffectNull::Apply(Game&, Player&)
 {
 }
 
@@ -22,11 +22,13 @@ IEffect* EffectFactoryNull::CreateEffect()
 
 EffectReceive::EffectReceive(int aReceived, Token aColour)
   : iReceived(aReceived)
+	, iToken(aColour)
 {
   std::ostringstream buf;
   buf << aReceived > 0 ? "Increase " : "Decrease ";
 
-  switch(aColour){
+  switch(iToken)
+	{
     case Token::eRed:
       buf << "red by ";
       break;
@@ -51,9 +53,11 @@ const std::string& EffectReceive::Description() const
 
 }
 
-void EffectReceive::Apply(Game& aGame)
+void EffectReceive::Apply(Game& aGame, Player& aCurrentPlayer)
 {
-
+	uint index = find(aGame.Players().begin(), aGame.Players().end(), aCurrentPlayer) - aGame.Players().end();
+	uint newtokens = aCurrentPlayer.Tokens().GetToken(iToken) + iReceived;
+	aCurrentPlayer.Tokens().SetToken(iToken, newtokens);
 }
 
 EffectReceiveFactory::EffectReceiveFactory(uint aPlayers)
