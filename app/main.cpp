@@ -20,13 +20,14 @@ int main()
 		dealer.Deal(*player, 4);
 	}
 
-	Arbitrator arbitrator;
+	Arbitrator2player arbitrator;
 	RendererConsole renderer;
 
 	bool playing = true;
 
 	while (playing)
 	{
+		cout << "=========================================================================" << endl;
 		renderer.Render(game);
 
 		// get each players input
@@ -42,23 +43,35 @@ int main()
 		}
 
 		// arbitrate
-		auto& winningEntry = arbitrator.Arbitrate(round);
+		auto winningEntry = arbitrator.Arbitrate(round);
 
-		// run effects
-		for (auto& effect : winningEntry.second->Effects())
+		if (winningEntry.first) // was there a winner?
 		{
-			//effect->Apply(winningEntry.first, game);
-			effect->Apply(game);
-		}
+			auto& player = winningEntry.second.first;
+			auto& missions = winningEntry.second.first.Missions();
+			auto& effects = winningEntry.second.second->Effects();
 
-		// check missions
-		for (auto& mission : winningEntry.first.Missions())
-		{
-			if (mission->Check(game, winningEntry.first))
+			cout << player.Name() << " won this round..." << endl;
+
+			// run effects
+			for (auto& effect : effects)
 			{
-				cout << winningEntry.first.Name() << " won!" << endl;
-				playing = false;
+				effect->Apply(game);
 			}
+
+			// check missions
+			for (auto& mission : missions)
+			{
+				if (mission->Check(game, player))
+				{
+					cout << player.Name() << " won!" << endl;
+					playing = false;
+				}
+			}
+		}
+		else
+		{
+			cout << "It was a draw." << endl;
 		}
 
 		for (auto& player : game.Players())

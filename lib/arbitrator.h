@@ -5,9 +5,17 @@
 
 typedef std::pair<Player&, std::unique_ptr<Card>> RoundEntry;
 
-class Arbitrator
+class IArbitrator 
 {
 public:
-	const RoundEntry& Arbitrate(const std::vector<RoundEntry>& aRoundEntries);
+	virtual const std::pair<bool, const RoundEntry&> Arbitrate(const std::vector<RoundEntry>& aRoundEntries) = 0;
+	virtual ~IArbitrator() {}
+};
+
+class Arbitrator2player
+	: public IArbitrator
+{
+public: // IArbitrator
+	const std::pair<bool, const RoundEntry&> Arbitrate(const std::vector<RoundEntry>& aRoundEntries) override;
 };
 
