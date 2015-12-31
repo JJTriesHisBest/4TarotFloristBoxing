@@ -55,7 +55,6 @@ const std::string& EffectReceive::Description() const
 
 void EffectReceive::Apply(Game& aGame, Player& aCurrentPlayer)
 {
-	uint index = find(aGame.Players().begin(), aGame.Players().end(), aCurrentPlayer) - aGame.Players().end();
 	uint newtokens = aCurrentPlayer.Tokens().GetToken(iToken) + iReceived;
 	aCurrentPlayer.Tokens().SetToken(iToken, newtokens);
 }
