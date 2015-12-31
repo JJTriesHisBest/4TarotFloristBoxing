@@ -13,7 +13,7 @@ int main()
 	game.AddPlayer(new Player("tim"));
 	game.AddPlayer(new Player("jj"));
 
-	Dealer dealer(new Deck(), new EffectFactoryNull());
+	Dealer dealer(new DeckRand(), new EffectFactoryNull());
 
 	for (auto& player : game.Players())
 	{

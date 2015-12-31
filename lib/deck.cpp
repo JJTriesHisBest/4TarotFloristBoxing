@@ -1,15 +1,18 @@
 #include <lib/deck.h>
+#include <cstdlib>
 
-Deck::Deck()
-	: iSuits(
-	{	Suit::eDiamond,
+DeckRand::DeckRand()
+{
+	iSuits = {
+		Suit::eDiamond,
 		Suit::eClub,
 		Suit::eHeart,
-		Suit::eSpade })
-{}
+		Suit::eSpade };
+}
 
-Card* Deck::CreateCard()
+Card* DeckRand::CreateCard()
 {
-	return new Card(Suit::eDiamond);
+	auto r = rand() % iSuits.size();
+	return new Card(iSuits[r]);
 }
 

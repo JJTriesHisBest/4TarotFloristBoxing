@@ -1,6 +1,6 @@
 #pragma once
 #include <lib/card.h>
-#include <memory>
+#include <vector>
 
 class IDeck
 {
@@ -9,11 +9,11 @@ public:
 	~IDeck() {}
 };
 
-class Deck
+class DeckRand
 	: public IDeck
 {
 public:
-	Deck();
+	DeckRand();
 public:
 	Card* CreateCard() override;
 private:
